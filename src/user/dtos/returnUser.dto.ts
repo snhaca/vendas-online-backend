@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 //import { ReturnAddressDto } from 'src/address/dtos/returnAddress.dto';
+import { ReturnAddressDto } from 'src/address/dtos/returnAddress.dto';
 import { UserEntity } from '../entities/user.entity';
 
 export class ReturnUserDto {
@@ -8,6 +9,7 @@ export class ReturnUserDto {
   email: string;
   phone: string;
   vat: string; 
+  addresses?: ReturnAddressDto[];
 
   constructor(userEntity: UserEntity) {
     this.id = userEntity.id;
@@ -16,5 +18,8 @@ export class ReturnUserDto {
     this.phone = userEntity.phone;
     this.vat = userEntity.vat;
  
+    this.addresses = userEntity.addresses
+    ? userEntity.addresses.map((address) => new ReturnAddressDto(address))
+    : undefined;
   }
 }

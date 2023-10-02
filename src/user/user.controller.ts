@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   UsePipes,
   ValidationPipe,
@@ -11,6 +12,8 @@ import { CreateUserDto } from './dtos/createUser.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './entities/user.entity';
 import { ReturnUserDto } from './dtos/returnUser.dto';
+import { UserId } from 'src/decorators/user-id.decorator';
+import { UpdatePasswordDTO } from './dtos/update_password.dto';
 
 @Controller('user')
 export class UserController {
@@ -34,5 +37,14 @@ export class UserController {
     return new ReturnUserDto(
       await this.userService.getUserByIdUsingRelations(userId),
     );
+  }
+
+  @Patch()
+  @UsePipes(ValidationPipe)
+  async updatePasswordUser(
+    @Body() updatePasswordDTO: UpdatePasswordDTO,
+    @UserId() userId: number,
+  ): Promise<UserEntity> {
+    return this.userService.updatePasswordUser(updatePasswordDTO, userId);
   }
 }

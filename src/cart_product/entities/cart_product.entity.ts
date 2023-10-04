@@ -10,7 +10,7 @@ import {
   ManyToOne, 
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm';
+} from 'typeorm'; 
 
 @Entity({ name: 'cart_product' })
 export class CartProductEntity {

@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import { CartProductEntity } from 'src/cart_product/entities/cart_product.entity';
+/* eslint-disable prettier/prettier */ 
 import { CartEntity } from '../entities/cart.entity';
 import { ReturnCartProductDTO } from 'src/cart_product/dtos/return_cart_product.dto';
 
